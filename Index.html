@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Beneviento</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3eee4;--fg:#000;--mut:#6b6b68;--card:#fff;--line:#d9d2c3;--blue:#5b7189;--beige:#e6dccb;--grey:#b9b8b3;--ink:#000;--paper:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000;--fg:#f3eee4;--mut:#a3a29d;--card:#161616;--line:#2c2c2b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#000;--fg:#f3eee4;--mut:#a3a29d;--card:#161616;--line:#2c2c2b;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+h1,h2,h3,.logo{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;margin:0;line-height:1.05}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;flex-wrap:wrap}
+.logo{font-size:28px;letter-spacing:.04em;color:var(--fg);text-decoration:none}
+nav{display:flex;gap:4px}
+nav a{color:var(--fg);text-decoration:none;padding:8px 12px;border-radius:20px;font-size:15px}
+nav a.on{background:var(--fg);color:var(--bg)}
+nav a:focus-visible,button:focus-visible,.logo:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+main{max-width:1000px;margin:0 auto;padding:28px 20px 56px}
+.view{display:none}.view.show{display:block}
+.hero{display:grid;gap:24px;align-items:center}
+@media(min-width:760px){.hero{grid-template-columns:1.1fr 1fr}}
+.hero h1{font-size:clamp(44px,9vw,84px)}
+.hero p{color:var(--mut);max-width:34ch;margin:16px 0 22px;font-size:18px}
+.btn{display:inline-block;background:var(--fg);color:var(--bg);border:0;border-radius:28px;padding:13px 26px;font:inherit;text-decoration:none;cursor:pointer}
+.stage{background:var(--blue);border-radius:24px;padding:28px 18px}
+.stage svg{width:100%;height:auto;display:block;transform:rotate(-6deg)}
+h2{font-size:34px;margin:44px 0 6px}
+.sub{color:var(--mut);margin:0 0 18px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 20px}
+.chip{border:1px solid var(--line);background:transparent;color:var(--fg);border-radius:20px;padding:8px 16px;font:inherit;font-size:14px;cursor:pointer}
+.chip.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.card .pic{padding:22px 18px}
+.card svg{width:100%;height:auto;display:block}
+.card .txt{padding:14px 18px 18px}
+.card h3{font-size:24px}
+.card .pr{font-weight:600;margin:4px 0}
+.card .cap{color:var(--mut);font-size:14px;margin:0}
+.about,.contact{max-width:560px}
+.about h1,.contact h1{font-size:clamp(40px,8vw,64px);margin-bottom:18px}
+.about p,.contact p{color:var(--mut);font-size:18px}
+.swatches{display:flex;gap:10px;margin:24px 0}
+.swatches i{width:42px;height:42px;border-radius:50%;border:1px solid var(--line)}
+.rows{border-top:1px solid var(--line);margin-top:22px}
+.rows div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.rows span:first-child{color:var(--mut)}
+footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:var(--mut);font-size:13px}
+@media (prefers-reduced-motion:no-preference){.view.show{animation:in .35s ease}@keyframes in{from{opacity:0}to{opacity:1}}}
+</style>
+</head>
+<body>
+<header>
+<a class="logo" href="#home">Beneviento</a>
+<nav aria-label="Main">
+<a href="#home" data-v="home">Home</a><a href="#shop" data-v="shop">Shop</a><a href="#about" data-v="about">About</a><a href="#contact" data-v="contact">Contact</a>
+</nav>
+</header>
+<main>
+<section class="view" id="v-home">
+<div class="hero">
+<div><h1>Walk quietly. Arrive well.</h1><p>Considered shoes in black, white, grey, beige and old blue.</p><a class="btn" href="#shop">Shop the collection</a></div>
+<div class="stage" id="hero-art"></div>
+</div>
+<h2>Favorites</h2><p class="sub">Three pairs people reach for first.</p>
+<div class="grid" id="fav"></div>
+</section>
+<section class="view" id="v-shop">
+<h1 style="font-size:clamp(40px,8vw,64px)">The collection</h1><p class="sub">Six pairs, one palette.</p>
+<div class="chips" id="chips"></div>
+<div class="grid" id="all"></div>
+</section>
+<section class="view about" id="v-about">
+<h1>Made to be worn, not watched.</h1>
+<p>Beneviento makes shoes with soft leathers, clean lines and a short list of colors that go with everything. Fewer styles, better made, easy to live in.</p>
+<div class="swatches"><i style="background:#000"></i><i style="background:#fff"></i><i style="background:#b9b8b3"></i><i style="background:#e6dccb"></i><i style="background:#5b7189"></i></div>
+<p>Every pair is cut to fit true to size, with a cushioned insole and a sole built for daily walking.</p>
+</section>
+<section class="view contact" id="v-contact">
+<h1>Say hello.</h1>
+<p>Questions about sizing or an order? Reach us any of these ways.</p>
+<div class="rows"><div><span>Email</span><span>hello@beneviento.example</span></div><div><span>Phone</span><span>+1 555 010 0199</span></div><div><span>Hours</span><span>Mon to Fri, 9am to 5pm</span></div></div>
+</section>
+</main>
+<footer>Sample prices and illustrations for preview. © Beneviento</footer>
+<script>
+var S=[
+{n:"Alba Low",p:120,c:"Sneakers",t:"s",k:["#fff","#e6dccb","#5b7189"],bg:"#e6dccb",cap:"Clean white leather for every day."},
+{n:"Notte High",p:145,c:"Sneakers",t:"s",k:["#000","#e6dccb","#b9b8b3"],bg:"#b9b8b3",cap:"Black high-top with a quiet beige sole."},
+{n:"Sabbia Runner",p:130,c:"Sneakers",t:"s",k:["#e6dccb","#fff","#8a8a86"],bg:"#d4d2cc",cap:"Beige and grey suede, made for long walks."},
+{n:"Indigo Court",p:135,c:"Sneakers",t:"s",k:["#5b7189","#fff","#e6dccb"],bg:"#e6dccb",cap:"Old blue canvas with a bone white toe."},
+{n:"Cenere Loafer",p:160,c:"Loafers",t:"l",k:["#9a9a96","#000","#e6dccb"],bg:"#5b7189",cap:"Soft grey suede with a slim black sole."},
+{n:"Brezza Boot",p:185,c:"Boots",t:"b",k:["#000","#e6dccb","#5b7189"],bg:"#d4d2cc",cap:"Black ankle boot on a stacked beige sole."}];
+function art(t,k){var b=k[0],s=k[1],a=k[2],r;
+if(t=="s")r='<path d="M10 94H192q4 0 4 8v3q0 5-6 5H16q-6 0-6-6z" fill="'+s+'"/><path d="M14 94C14 62 30 52 52 47L68 24C74 17 84 19 90 25C102 36 122 46 152 52C178 58 192 72 192 94z" fill="'+b+'"/><path d="M152 52C178 58 192 72 192 94H150z" fill="'+a+'"/><path d="M72 30l18 14M82 24l16 14M94 38l14 10" stroke="'+a+'" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M14 94C14 78 18 68 30 62V94z" fill="'+a+'"/>';
+else if(t=="b")r='<path d="M10 98H190q4 0 4 8v2q0 5-6 5H16q-6 0-6-6z" fill="'+s+'"/><path d="M30 14H80L84 52C104 60 152 58 188 76C194 82 194 98 192 98H26z" fill="'+b+'"/><path d="M30 14H80L81 28H29z" fill="'+a+'"/><path d="M60 40h14M62 50h14" stroke="'+a+'" stroke-width="3" stroke-linecap="round"/>';
+else r='<path d="M10 96H192q4 0 4 7v2q0 5-6 5H16q-6 0-6-6z" fill="'+s+'"/><path d="M14 96C14 74 38 66 68 66C108 66 140 72 182 84C194 88 194 96 192 96z" fill="'+b+'"/><path d="M70 66C80 60 102 60 114 68L110 82C98 76 82 74 66 78z" fill="'+a+'"/><path d="M14 96C14 84 18 76 28 72V96z" fill="'+a+'"/>';
+return '<svg viewBox="0 0 206 120" role="img" aria-label="Illustration of a shoe">'+r+'</svg>'}
+function card(x){return '<article class="card"><div class="pic" style="background:'+x.bg+'">'+art(x.t,x.k)+'</div><div class="txt"><h3>'+x.n+'</h3><div class="pr">$'+x.p+'</div><p class="cap">'+x.cap+'</p></div></article>'}
+function list(f){document.getElementById("all").innerHTML=S.filter(function(x){return f=="All"||x.c==f}).map(card).join("")}
+document.getElementById("hero-art").innerHTML=art("s",["#fff","#000","#e6dccb"]);
+document.getElementById("fav").innerHTML=[S[0],S[3],S[4]].map(card).join("");
+var ch=document.getElementById("chips");
+["All","Sneakers","Loafers","Boots"].forEach(function(f,i){var b=document.createElement("button");b.className="chip"+(i?"":" on");b.textContent=f;b.onclick=function(){[].forEach.call(ch.children,function(c){c.classList.remove("on")});b.classList.add("on");list(f)};ch.appendChild(b)});
+list("All");
+function route(){var v=(location.hash||"#home").slice(1);if(!document.getElementById("v-"+v))v="home";
+[].forEach.call(document.querySelectorAll(".view"),function(e){e.classList.toggle("show",e.id=="v-"+v)});
+[].forEach.call(document.querySelectorAll("nav a"),function(a){a.classList.toggle("on",a.dataset.v==v)});window.scrollTo(0,0)}
+window.addEventListener("hashchange",route);route();
+</script>
+</body>
+</html>
